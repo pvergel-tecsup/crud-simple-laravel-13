@@ -7,52 +7,67 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## CRUD Sencillo (Laravel 13)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Sobre el proyecto
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+El proyecto presenta dos CRUD para dos tablas: Categoria y Producto.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Estructura de las tablas
+Categoria
+- id
+- descripcion
 
-## Learning Laravel
+Producto
+- id_producto
+- nombre
+- marca
+- precio
+- stock
+- id_categoria
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Habilitación de la aplicación
+Siga los siguiente pasos para habilitar la aplicación:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Paso 1: Crear una base de datos en blanco
+Cree una base de datos para la aplicación. No es necesario crear tabla alguna.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### Paso 2: Genere el archivo .env
+Cree el archivo .env en base al archivo .env.example.
 
-## Agentic Development
+### Paso 3: Configurar la conexión a la base de datos
+En su archivo .env coloque la conexión a la base de datos creada en el paso 1.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Paso 4: Genere la clave de seguridad (APP_KEY) de su aplicación
+En la carpeta del proyecto Laravel cree la llave (key) de seguridad de su aplicación ejecutando el siguiente comando:
+> php artisan key:generate
 
-```bash
-composer require laravel/boost --dev
+Esto colocará la llave de seguridad en la variable APP_KEY en su archivo .env
 
-php artisan boost:install
-```
+### Paso 5: Genere las dependencias y librerías externas de su aplicación (carpeta "vendor")
+En la carpeta del proyecto Laravel genere la carpeta "vendor" con las dependencias y librerías de la aplicación ejecutando el siguiente comando:
+> composer install
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### Paso 6: Ejecute las migraciones
+En la carpeta del proyecto Laravel ejecute el siguiente comando:
+> php artisan migrate
 
-## Contributing
+## Para cambiar el idioma a español
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Para mostrar los errores de validación en español en Laravel, debe configurar el idioma local en tu archivo .env y asegurarse de que el directorio de traducciones esté publicado en su proyecto.  
 
-## Code of Conduct
+Siga estos 3 pasos para configurarlo:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Configurar el entorno
+Abra su archivo .env en la raíz del proyecto y cambie la variable de idioma a español:
+> APP_LOCALE=es  
+> APP_FALLBACK_LOCALE=es
 
-## Security Vulnerabilities
+### Publicar los archivos de idioma
+Ejecute el siguiente comando en la terminal para generar la carpeta lang (si no existe en su proyecto):
+> php artisan lang:publish
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Instalar las traducciones
+Instale el paquete oficial de traducciones para obtener las validaciones de Laravel en español:
+> composer require laravel-lang/common --dev  
+> php artisan lang:update
